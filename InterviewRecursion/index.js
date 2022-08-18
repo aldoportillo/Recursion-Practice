@@ -53,3 +53,57 @@ function productOfArray(array){
 //return 120 * 1
 
 console.log(productOfArray([1,2,3,4,5]))
+
+//Problem 6: Write a function called contains that searches for a value in a nested object. It returns true if the object contains that value
+
+const contains = (object, val) => {
+    for(const key in object){
+		if(typeof object[key] === 'object'){
+			return contains(object[key], val);
+		}
+
+		if (object[key] === val){
+			return true;
+		}
+	}
+	return false;
+}
+
+var nestedObject = {
+    data: {
+        info: {
+            stuff: {
+                thing: {
+                    moreStuff: {
+                        magicNumber: 44,
+                        something: 'foo2'
+                    }
+                }
+            }
+        }
+    }
+}
+
+let hasIt = contains(nestedObject, 44); // true
+let doesntHaveIt = contains(nestedObject, "foo"); // false
+
+console.log(hasIt, doesntHaveIt);
+
+/////Steps checks if an object's key value is an object if so it runs the function again at a lower level til it gets to a key whose value is not a object
+/////Steps If the key value is equal to our input value it returns true otherwise false
+
+
+//Explenation
+//contains(nestedObject, 44)
+//  contains(data, 44);
+//      contains(info, 44);
+//          contains(stuff, 44)
+//              contains(thing, 44);
+//                  contains(moreStuff, 44);
+//                      if moreStuff.magicNumber == 44 retutn true
+//                  return true
+//              return true 
+//          return true
+//      return true
+//  return true
+//return true
