@@ -107,3 +107,35 @@ console.log(hasIt, doesntHaveIt);
 //      return true
 //  return true
 //return true
+
+//Problem 6: Given a multi-dimensional integer array, return the total number of integers stored inside this array
+
+const totalIntegers = (arr) => {
+    if(arr.length === 0) return 0;
+
+	let total = 0;
+	let first = arr.shift();
+
+	if (Array.isArray(first)){
+		total += totalIntegers(first); 
+	} else if (Number.isInteger(first)) {
+		total += 1;
+	}
+
+	return total + totalIntegers(arr);
+}
+
+
+var seven = totalIntegers([[[5], 3], 0, 2, ['foo'], [], [4, [5, 6]]]); // 7
+console.log(seven);
+
+//Explenation 
+//totalIntegers([[[5], 3], 0, 2, ['foo'], [], [4, [5, 6]]])
+//  
+
+//Link to problems: https://www.codingame.com/playgrounds/5422/js-interview-prep-recursion
+
+
+//Problem 10: Output a single linked list - Let’s say we have a single-linked list Write a function printList(list) that outputs list items one-by-one.
+
+//Link to more problems: https://javascript.info/recursion
